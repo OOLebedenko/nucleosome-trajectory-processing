@@ -23,14 +23,14 @@ The processing of the MD trajectory of the NCP particle includes the following s
    dynamics)
 
 <p align="center">
-  <img src="figures/Y20_traj.png">2
+  <img src="figures/Y20_traj.png">
 </p>
 
 4) calculate auto-correlation function g(τ). At this step, the overall tumbling was reintroduced by multiplying the
    result by exp(-τ/τ_rot), where τ_rot is 163.4 ns.
 
 <p align="center">
-  <img src="figures/auto-correlation_func.png">2
+  <img src="figures/auto-correlation_func.png">
 </p>
 
 5) fit auto-correlation function with a 6-exponential function, containing twelve fitting parameters (amplitudes ai and
@@ -42,14 +42,14 @@ The processing of the MD trajectory of the NCP particle includes the following s
 6) translate the obtained ai and τi values into spectral densities
 
 <p align="center">
-  <img src="figures/spectral_density.png">2
+  <img src="figures/spectral_density.png">
 </p>
 
 8) calculate 15N R1 and R2 relaxation rates. In these calculations, we employed the standard values of the N-HN bond
    length (1.02 Å) and 15N chemical shift anisotropy (-170 ppm).
 
 <p align="center">
-  <img src="figures/relaxation_rates.png">2
+  <img src="figures/relaxation_rates.png">
 </p>
 
 ### Run scripts
