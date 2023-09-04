@@ -3,7 +3,7 @@
 # nucleosome-trajectory-processing
 
 This repository contains the scripts and example data for analysis of MD trajectory of nucleosome core particle (NCP).
-You may find our protocol for MD simulation of NCP at https://github.com/OOLebedenko/nucleosome-md-simulation
+You can find our protocol for MD simulation of NCP at https://github.com/OOLebedenko/nucleosome-md-simulation
 
 ### System requirements
 
@@ -18,7 +18,8 @@ Key packages and programs:
 
 ### Installation dependencies
 
-The key package for analysis of MD trajectory is in-house python library [pyxmolpp2](https://sizmailov.github.io/pyxmolpp2/api/python/install.html)
+The key package for analysis of MD trajectory is in-house python
+library [pyxmolpp2](https://sizmailov.github.io/pyxmolpp2/api/python/install.html)
 
 ```code-block:: bash
     # install requried packages via
@@ -30,19 +31,18 @@ The key package for analysis of MD trajectory is in-house python library [pyxmol
     pip install --upgrade pip
     python -m pip install -U setuptools wheel pip
     
-    # export path to C++ compilers needed for pyxmolpp2
+    # export path to C++ compilers needed for compilation of pyxmolpp2
     export CC=/usr/bin/gcc-7; export CXX=/usr/bin/g++-7 
     
-    # install packages
+    # install python packages
     pip install -r requirements.txt
 ```
 
-### Run analysis of MD trajectory
+### Run MD analysis
 
-To start processing of the MD trajectory, please, see the github page for the corresponding type of analysis:
+To start processing of the MD trajectory, please, see the github page for the relevant type of calculations:
 
 1) [15N relaxation rates](15N_relaxation_rates/README.md)
-
 
 </div>
 
