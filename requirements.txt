@@ -2,6 +2,6 @@ biopython==1.81
 matplotlib==3.7.2
 numpy==1.25.2
 pandas==2.0.3
-pyxmolpp2 @ git+https://github.com/sizmailov/pyxmolpp2.git@d1e119d004d007757546ddf73b56a5261a971526
+pyxmolpp2==2.0.2
 scipy==1.11.2
 tqdm==4.66.1
