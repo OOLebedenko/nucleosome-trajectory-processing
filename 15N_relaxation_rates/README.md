@@ -69,16 +69,12 @@ We provide the templates to analyze short 10-ns trajectories recorded with Amber
 results are for demonstration purpose only and cannot be used for interpretation of H4 tail dynamics.
 
 ```code-block:: bash
-   cd example
-   
    # run the script to process Amber MD trajectory 
-   cd trajectory_AmberNetCDF
-   cd H4 
+   cd example/trajectory_AmberNetCDF/H4_tails 
    make
    
    # run the script to process Gromacs MD trajectory 
-   cd trajectory_GromacsXtc
-   cd H4 
+   cd example/trajectory_GromacsXtc/H4_tails
    make 
 ```
 
