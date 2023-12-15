@@ -14,7 +14,8 @@ FILETYPE:=nc
 PATTERN:=run%05d
 # set timestep used to record trajectory files
 DT_NS=0.01 # ns
-
+# set trajectory stride (DT_NS * TRAJECTORY_STRIDE is frequency of saving results)
+TRAJECTORY_STRIDE:=100 # e.g. the result of RMSD calculation is saved every 1 ns (DT_NS=0.01 * TRAJECTORY_STRIDE:=100)
 
 ## 3. set path to Xray reference pdb relative to which RMSD is calculated
 XRAY_REF="" # for example 3lz0
