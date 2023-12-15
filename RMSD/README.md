@@ -13,7 +13,7 @@ The processing of the MD trajectory of the NCP particle includes the following s
 
 2) calculate RMSD using different sets of atoms:
 - (i) Cα atoms that have been used to overlay the frames 
-- (ii) N1 and N9 atoms from nDNA nucleobases (red curve)
+- (ii) N1 and N9 atoms from nDNA nucleobases
 - (iii) sets (i) and (ii) combined
 - (iv) N1 and N9 atoms from the inner turn of nDNA, nucleotides from -38 to 38
 - (v) N1 and N9 atoms from the outer turn of nDNA, nucleotides from -72 to -39 and from 39 to 72
