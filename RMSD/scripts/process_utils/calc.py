@@ -14,7 +14,7 @@ class CalcRmsd(TrajectoryProcessor):
                  out_dirname: str = ".") -> None:
         """
         The idea is to run of the processing trajectory in pipe-like format:
-        trajectory | CalcRmsd(dt_ns=0.001) | Run()
+        trajectory | CalcRmsd(*args) | Run()
 
         :param reference: reference structure
         :param by: selector of atoms which are used to calculate RMSD
