@@ -24,15 +24,14 @@ class CalcRmsd(TrajectoryProcessor):
         """
 
         self.reference = reference
-        self.atoms_selector_for_alignment = by_atoms
+        self.by_atoms = by_atoms
         self.dt_ns = dt_ns
         self.out_filename = out_filename
         self.out_dirname = out_dirname
         self.output_file = None
         self.prev_cm = None
 
-        self._reference_atoms_for_alignment = self.reference.atoms.filter(self.atoms_selector_for_alignment)
-        self._reference_atoms_for_alignment_coords = self._reference_atoms_for_alignment.coords.values
+        self._by_reference_atoms = self.reference.atoms.filter(self.by_atoms)
 
     def before_first_iteration(self, frame: Frame) -> None:
         """
@@ -40,7 +39,7 @@ class CalcRmsd(TrajectoryProcessor):
         :param frame:
         :return:
         """
-        self._frame_atoms_for_alignment = frame.atoms.filter(self.atoms_selector_for_alignment)
+        self._by_frame_atoms = frame.atoms.filter(self.by_atoms)
 
         # open file to write rmsd values
         os.makedirs(self.out_dirname, exist_ok=True)
@@ -66,12 +65,6 @@ class CalcRmsd(TrajectoryProcessor):
         :param frame:
         :return:
         """
-        alignment = self._frame_atoms_for_alignment.alignment_to(self._reference_atoms_for_alignment)  # alignment
-        crd = self._frame_atoms_for_alignment.coords.values.copy()
-        crd = crd @ alignment.matrix3d().T + alignment.vector3d().values  # get coordinates
-
-        frame.atoms.coords.apply(alignment)
-        rmsd = calc_rmsd(self._reference_atoms_for_alignment_coords, crd)
+        rmsd = calc_rmsd(self._by_reference_atoms.coords.values, self._by_frame_atoms.coords.values)
         self.out_csvfile.writerow([frame.index * self.dt_ns, rmsd])
-
         return frame
