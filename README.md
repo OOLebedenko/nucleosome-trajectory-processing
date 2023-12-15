@@ -44,6 +44,7 @@ pip install -r requirements.txt
 To start processing of the MD trajectory, please, see the github page for the relevant type of calculations:
 
 1) [15N relaxation rates](15N_relaxation_rates/README.md)
+2) [RMSD](RMSD/README.md)
 
 </div>
 

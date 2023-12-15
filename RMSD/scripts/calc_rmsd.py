@@ -4,7 +4,8 @@ import os
 import operator
 
 from tqdm import tqdm
-from pyxmolpp2 import PdbFile, Trajectory, TrjtoolDatFile, AmberNetCDF, GromacsXtcFile, mName, rId, aName, UnitCell, Degrees
+from pyxmolpp2 import PdbFile, Trajectory, TrjtoolDatFile, AmberNetCDF, GromacsXtcFile, mName, rId, aName, UnitCell, \
+    Degrees
 from pyxmolpp2.pipe import AssembleQuaternaryStructure, Align, Run
 
 from process_utils.select import get_sec_str_residues_predicate
@@ -28,7 +29,7 @@ if __name__ == '__main__':
     parser.add_argument('--pattern', default="run%05d")
     parser.add_argument('--trajectory-start', default=1, type=int)
     parser.add_argument('--trajectory-length', required=True, type=int)
-    parser.add_argument('--trajectory-stride',default=1, type=int)
+    parser.add_argument('--trajectory-stride', default=1, type=int)
     parser.add_argument('--frames-per-trajectory-file', type=int, default=100)
     parser.add_argument('--dt-ns', type=float, default=0.01)
     parser.add_argument('--output-directory', default=".")
@@ -49,12 +50,12 @@ if __name__ == '__main__':
     xray_ref = PdbFile(args.path_to_xray_reference_pdb).frames()[0]
 
     # select secondary-strucuture residues
-    protein_chains = ["A", "B", "C", "D", "E", "F", "G", "H"]
+    protein_chains = "A", "B", "C", "D", "E", "F", "G", "H"
     ss_residues = get_sec_str_residues_predicate(frame=reference, molnames=protein_chains)
     ss_ca_atoms = ss_residues & (aName == "CA")
 
     # select inner and outer DNA turns
-    dna_chains = ["I", "J"]
+    dna_chains = "I", "J"
     dna_align_pred = aName.is_in("N1", "N9") & mName.is_in(set(dna_chains))
     dna_inner_turn = set(range(-38, 38))
     dna_outer_turn = set(range(-72, -39)) | set(range(39, 72))
@@ -63,10 +64,10 @@ if __name__ == '__main__':
 
     # process trajectory
     tqdm(traj[::args.trajectory_stride]) \
-    | AssembleQuaternaryStructure(of=(mName.is_in("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")),
+    | AssembleQuaternaryStructure(of=(mName.is_in(set(protein_chains) | set(dna_chains))),
                                   by=aName.is_in("P") | ss_ca_atoms,
                                   reference=reference) \
-    | Align(by=ss_ca_atoms, reference=reference) \
+    | Align(by=ss_ca_atoms, reference=xray_ref) \
     | CalcRmsd(reference=xray_ref,
                by_atoms=ss_ca_atoms | dna_align_pred,
                dt_ns=args.dt_ns,
