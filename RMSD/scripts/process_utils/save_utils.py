@@ -40,7 +40,7 @@ def plot_and_save_rmsd(path_to_rmsd_dir: str,
         axs[index].plot(df_rmsd["time_ns"], df_rmsd["rmsd"],
                     color=colors[ind], linewidth=1.0, label=labels[ind])
         if axis_limits is None:
-            axis_limits = [0, df_rmsd["time_ns"].values[-1] + 10, 0, 10]
+            axis_limits = [0, df_rmsd["time_ns"].values[-1] + 10, 0, 14]
 
     for index in [0, 1]:
         axs[index].set(xlabel="time, ns", ylabel=r"RMSD, ${\rm\AA}$")
