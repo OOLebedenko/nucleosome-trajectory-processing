@@ -28,6 +28,7 @@ if __name__ == '__main__':
     parser.add_argument('--pattern', default="run%05d")
     parser.add_argument('--trajectory-start', default=1, type=int)
     parser.add_argument('--trajectory-length', required=True, type=int)
+    parser.add_argument('--trajectory-stride',default=1, type=int)
     parser.add_argument('--frames-per-trajectory-file', type=int, default=100)
     parser.add_argument('--dt-ns', type=float, default=0.01)
     parser.add_argument('--output-directory', default=".")
@@ -61,9 +62,9 @@ if __name__ == '__main__':
     outer_dna_seceletion = (mName.is_in(set(dna_chains))) & (rId.is_in(dna_outer_turn)) & aName.is_in("N1", "N9")
 
     # process trajectory
-    tqdm(traj) \
-    | AssembleQuaternaryStructure(of=(mName.is_in(set(dna_chains) | set(protein_chains))),
-                                  by=aName.is_in({"P", "CA"}),
+    tqdm(traj[::args.trajectory_stride]) \
+    | AssembleQuaternaryStructure(of=(mName.is_in("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")),
+                                  by=aName.is_in("P") | ss_ca_atoms,
                                   reference=reference) \
     | Align(by=ss_ca_atoms, reference=reference) \
     | CalcRmsd(reference=xray_ref,
