@@ -66,7 +66,7 @@ if __name__ == '__main__':
     | AssembleQuaternaryStructure(of=(mName.is_in("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")),
                                   by=aName.is_in("P") | ss_ca_atoms,
                                   reference=reference) \
-    | Align(by=ss_ca_atoms, reference=reference) \
+    | Align(by=ss_ca_atoms, reference=xray_ref) \
     | CalcRmsd(reference=xray_ref,
                by_atoms=ss_ca_atoms | dna_align_pred,
                dt_ns=args.dt_ns,
